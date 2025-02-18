@@ -1,0 +1,242 @@
+body {
+    background-color: aliceblue;
+    font-family: kinetika;
+    gap: 15px;
+    width: auto;
+    height: 1080px;
+}
+
+header{
+    width: auto;
+    height: 120px;
+}
+.header_information{
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    align-items: center;
+
+}
+
+.header_photo-logoicon{
+    border-radius: 1rem;
+}
+
+.header_input-type{
+    background-color: rgba(216, 216, 216, 0.758);
+    border-radius: 0.5rem;
+    width: 500px;
+    height: 60px;
+ 
+    align-items: center;
+
+}
+
+.header_infobox{
+    display: flex;
+}
+
+.number{
+    font-size: 30px;
+    color: black;
+}
+
+.number_down-info{
+    font-size: 15px;
+    color: rgba(111, 111, 111, 0.738);
+}
+
+.header_photo-phone{
+margin-top: 30px;
+margin-right: 15px;
+}
+.header_infobox{
+    width: 300px;
+    height: 60px;
+    bottom: 10px;
+    justify-content: center;
+    position: relative;
+}
+.number_down-info{
+    justify-content: center;
+    top: 0.5px;
+    margin-bottom: 10px;
+    position: absolute;
+}
+
+.header_info-text{
+    display: table-column;
+    gap: 5px;
+    
+}
+
+/* main */
+.main_menu{
+    width: auto;
+    height: 64px;
+    background-color: rgba(255, 0, 0, 0.985);
+    margin-top: 10px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    
+}
+
+.main_btn-katalog{
+    width: 120px;
+    height: 39px;
+position: relative;
+margin-top: 5px;
+
+padding: 10px;
+margin-right: 70px;
+border-radius: 5px;
+border-color: aliceblue;
+background-color: rgb(255, 166, 139);
+display: flex;
+gap: 5px;
+font-family: kinetika;
+font-size: 20px;
+text-align: center;
+justify-content: center;
+justify-items: center;
+color: white;
+}
+.main_text-katalog{
+    margin-top: -6px;
+    display: flex;
+
+}
+
+.main_menu-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.main_menu-text :hover{
+    color: white;
+}
+
+/* main information */
+
+.main_photo-novinki{
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-stul{
+    width: 1100px;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 200px;
+    margin-top: 20px;
+    justify-items: center;
+    text-align: center;
+    border-radius: 1rem;
+}
+
+/* main element */
+.main_box-tovari{
+    width: auto;
+    height: 1000px;
+    display: flex;
+}
+
+.main_text-skidki{
+    font-size: 50px;
+    margin-left: 60px;
+}
+
+.main_box-element{
+    width: 400px;
+    height: 450px;
+    border: 3px solid rgba(255, 0, 0, 0.349);
+    margin-left: 50px;
+    border-radius: 0.5rem;
+    display: inline-block;
+}
+.main_box-element:hover{
+    display: block;
+    box-shadow: 7px 10px 7px;
+    
+    transform: scale(0.99);
+    background-color: rgba(240, 248, 255, 0.801);
+}
+
+.main_element-photo{
+    width: 250px;
+    height: 250px;
+    margin-left: 75px;
+    
+      
+}
+
+
+
+.main_element-text{
+    justify-content: center;
+    text-align: center;
+}
+
+.main_element-price{
+    width: 400px;
+    height: 50px;
+    align-items: center;
+    text-align: center;
+    position:  block;
+
+
+    
+}
+
+.main_element-cena{
+   align-items: center;
+   margin-bottom: 10px;
+   margin: 0px;
+    gap: 10px;
+   margin-top: -5%;
+
+}
+
+.price{
+    font-size: 35px;
+    margin-bottom: 0;
+ 
+
+}
+
+.after_price{
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: rgba(109, 110, 110, 0.751);
+    position: block;
+    text-align: center;
+
+}
+
+.main_element-mother{
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@font-face {
+    font-family: kinetika;
+    src: url(/font/Kastelov\ -\ Kinetika\ Light.otf);
+}

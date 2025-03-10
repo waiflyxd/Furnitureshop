@@ -3,18 +3,19 @@ body {
     font-family: kinetika;
     gap: 15px;
     width: auto;
-    height: 1080px;
+    height: auto;
 }
 
 header{
-    width: auto;
-    height: 120px;
+    width: 100%; /* Изменено на 100% для адаптивности */
+    height: auto;
 }
 .header_information{
     display: flex;
     justify-content: space-around;
     gap: 15px;
     align-items: center;
+    width: auto;
 
 }
 
@@ -25,7 +26,7 @@ header{
 .header_input-type{
     background-color: rgba(216, 216, 216, 0.758);
     border-radius: 0.5rem;
-    width: 500px;
+    width: 150%;
     height: 60px;
  
     align-items: center;
@@ -68,6 +69,10 @@ margin-right: 15px;
     display: table-column;
     gap: 5px;
     
+}
+
+.header_full{
+    width: auto;
 }
 
 /* main */
@@ -144,8 +149,9 @@ color: white;
 /* main element */
 .main_box-tovari{
     width: auto;
-    height: 1000px;
+    height: 500px;
     display: flex;
+    position: relative;
 }
 
 .main_text-skidki{
@@ -163,7 +169,7 @@ color: white;
 }
 .main_box-element:hover{
     display: block;
-    box-shadow: 7px 10px 7px;
+    box-shadow: 20px 20px 20px;
     
     transform: scale(0.99);
     background-color: rgba(240, 248, 255, 0.801);
@@ -222,21 +228,222 @@ color: white;
 
 .main_element-mother{
     display: flex;
+    width: auto;
+    height: 500px;
+}
+
+.registration{
+    background-color: rgb(227, 227, 227);
+    border-radius: 4px;
+
+}
+
+.main_registration-window{
+    display: none;
+    width: 500px;
+    height: 500px;
+    justify-content: center;
+    align-items: center ;
+    background-color: rgb(211, 12, 12);
+    position: fixed;
+    border-radius: 8px;
+    text-align: center;
+    gap: 20px;
+    z-index: 99999;
+}
+
+.regwindow{
+    margin-left: 35%;
+}
+
+.closePopup{
+  margin-left: 400px;
+  background-color: rgb(237, 237, 237);
+  border-radius: 4px;
+}
+
+.button_reg{
+    margin-top: 100px;
+    gap: 50px;
+
+
+}
+
+.infowind{
+    margin-top: 70px;
+}
+
+.input_reg{
+    width: 200px;
+    height: 30px;
+}
+.sign_in{
+    background-color: rgb(0, 136, 255);
+    border-radius: 4px;
+    width: 100px;
+    height: 40px;
+    color: white;
+}
+
+.sign_up{
+    background-color: rgb(255, 125, 125);
+    border-radius: 4px;
+    width: 150px;
+    height: 40px;
+    color: white;
+}
+
+/* product card */
+
+.main_products{
+    display: flex;
+    justify-content: center;
+}
+
+.main_products2{
+    display: flex;
+    justify-content: center;
+}
+
+.product_card{
+    background-color: aliceblue;
+    width: 400px;
+    height: 600px;
+    padding-left: 5px;
+    gap: 10px;
 }
 
 
 
+.main_product-btn{
+    background-color: rgba(255, 0, 0, 0.619);
+    border-radius: 0.5rem;
+    width: 100px;
+    height: 40px;
+    font-family: kinetika;
+    color: white;
+    margin-top: 10px;
+}
+
+.main_product-img{
+    width: 250px;
+    height: 250px;
+}
+
+.main_product_price{
+    background-color: rgba(255, 0, 0, 0.619);
+    border-radius: 4px;
+    width: 70px;
+    height: 25px;
+    align-items: center;
+    text-align: center;
+    
+    
+}
+
+.main_product-all{
+    display: flex;
+    gap: 10px;
+}
 
 
+.main_product-bonus{
+    color: rgba(111, 183, 241, 0.989);
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
 
 
+.main_product-star{
+    width: 15px;
+    height: 15px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+   
+    
+}
 
+.main_product-mention{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.main_product-reviews{
+    display: flex;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
 
+.main_product-nal{
+    color: rgb(124, 124, 124);
+}
 
+.main_item-done {
+    background-color: red;
+    opacity: 0.8;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    border-radius: 6px;
 
+    width: 500px;
+    height: 50px;
+
+    position: fixed; /* Оставляем fixed для фиксированного позиционирования */
+    bottom: 0; /* Устанавливаем элемент в нижнюю часть окна */
+    left: 50%; /* Центрируем элемент по горизонтали */
+    transform: translateX(-50%); /* Сдвигаем элемент на половину его ширины для центрирования */
+    display: none;
+    z-index: 9999;
+}
+
+.main_text-done{
+    position: absolute;
+}
 
 
 @font-face {
     font-family: kinetika;
     src: url(/font/Kastelov\ -\ Kinetika\ Light.otf);
+}
+
+@media only screen and (min-width: 768px) {
+    .header_information {
+        flex-direction: row; /* Вернемся к row для больших экранов */
+    }
+
+    .main_menu {
+        flex-direction: row; /* Вернемся к row для больших экранов */
+    }
+
+    .main_box-element {
+        width: 400px; /* Вернемся к фиксированной ширине для больших экранов */
+    }
+
+    .header_input-type {
+        width: 500px; /* Вернемся к фиксированной ширине для больших экранов */
+    }
+}
+@media only screen and (max-width: 767px) {
+    .header_information {
+        flex-direction: column; /* Вернемся к column для мобильных устройств */
+    }
+
+    .main_menu {
+        width: 100%;
+        
+    }
+    .main_text-menu{
+        width: 100%;
+    }
+
+    .main_box-element {
+        width: 90%; /* Установим ширину на 90% для мобильных устройств */
+        
+    }
+
+    .photo-stul {
+        width: 100%; /* Установим ширину на 100% для мобильных устройств */
+        height: auto; /* Установим высоту на auto для мобильных устройств */
+        
+    }
 }

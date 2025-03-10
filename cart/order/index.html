@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/photo/shop.png" type="image/png" color="white">
+</head>
+<body>
+    <header class="header_full">
+        <div class="header_information">
+            <div class="header_photo-logo">
+               <a href="/main/index.html"> <img src="/photo/уютныйдом.png" width="250px" height="120px" class="header_photo-logoicon"></a>
+            </div>
+        </div>
+    </header>
+    <main class="main_full">
+        <a href="/cart/index.html"><p class="main_back-to-order">Вернутся в корзину</p></a>
+    <div class="leftandright">
+        <div class="cartoffer">
+        <h1 class="main_text-before-payment"><b>Оформление заказа</b></h1>
+        <div class="payment_and_agree">
+            <div class="main_payment">
+                <p class="main_payment-text"><b>Способ Оплаты</b></p>
+            
+                <div class="main_payment-method">
+                    <div class="payment_method">
+                        <img src="/photo/hzbank2.png" width="100px" height="100px" class="img_payment">
+                        <p class="hz">Дальше не придумал не знаю я устал:(</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <h1 class="delivery">Доставка</h1>
+        <div class="main_payment">
+            <p class="main_payment-text"><b>Способ Получения</b></p>
+        
+            <div class="main_payment-method">
+                <div class="payment_method">
+                    <p class="point_delivery">Пункт выдачи</p>
+                </div>
+                <div class="del_info">
+                    <input class="point_delivery-point"><p class="adress">Адрес</p>
+                </div>
+                <p class="saveitem">Срок хранения - <b>14 дней</b></p>
+            </div>
+    </div>
+    </div>
+            <div class="main_agree">
+                <button class="main_agree-text">Подтвердить и оплатить</button>
+                    <div class="allinfo">
+                        <p class="info"><b>Данные</b></p>
+                        <p class="name">Укажите <b>ФИО</b> получателя</p>
+                        <div class="info_and_agree">
+                            <input class="inputinfo" data-id="0" >
+                            <button type="disabled" class="agreebtn" data-id="0">Подвердить</button>
+                        </div>
+                        <p class="name">Укажите <b>дату</b> получения</p>
+                        <div class="info_and_agree">
+                            <input class="inputinfo" data-id="1">
+                            <button type="disabled" class="agreebtn" data-id="1">Подвердить</button>
+                        </div>
+                        <p class="name">Укажите <b>номер телефона</b></p>
+                        <div class="info_and_agree">
+                            <input class="inputinfo" data-id="2">
+                            <button type="disabled" class="agreebtn" data-id="2">Подвердить</button>
+                        </div>
+                        <p class="name"><b>Комментарий</b></p>
+                        <div class="info_and_agree">
+                            <input class="inputinfo"  data-id="3">
+                            <button type="disabled" class="agreebtn" data-id="3">Подвердить</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="/cart/order/script.js"></script>
+</html>

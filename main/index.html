@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Уютный Дом</title>
@@ -9,6 +10,7 @@
     <link rel="icon" href="/photo/shop.png" type="image/png" color="white">
 </head>
 <body>
+    
     <header class="header_full">
         <div class="header_information">
             <div class="header_photo-logo">
@@ -30,8 +32,8 @@
             <div class="header_like-box">
                     <img src="/photo/like.png" width="30px" height="30px">
             </div>
-            <div class="header_korz-box">
-                <img src="/photo/korz.png" width="30px" height="30px">
+          <div class="header_korz-box">
+            <a href="/cart/index.html"><img src="/photo/korz.png" width="30px" height="30px"></a>
             </div>
         </div>
     </header>
@@ -55,7 +57,7 @@
                 Прихожая
             </p>
             <p class="main_text-menu">
-                Спальня
+          f      Спальня
             </p>
             <p class="main_text-menu">
                 Матрасы
@@ -69,17 +71,38 @@
             <p class="main_text-menu">
                 Сад и дача
             </p>
-
+            <button class="registration">Вход в профиль</button>
         </div>
     </div> 
+    <div class="regwindow">
+        <div class="main_registration-window">
+            <button class="closePopup" aria-label="Закрыть окно">Закрыть</button>
+            <h1 class="reg_win-text">Введите свой Дом ID</h1>
+            <div class="infowind">
+                <p class="reg_win-textdecription">Введите email</p>
+                <input class="input_reg" type="email" placeholder="example@mail.com" required>
+                <p class="reg_win-textdecription">Введите пароль</p>
+                <input class="input_reg" type="password" placeholder="Ваш пароль" required>
+            </div>
+            <div class="button_reg">
+                <button class="sign_in" onсlick="signIn()">Войти</button>
+                <button class="sign_up" onсlick="signUp()">Зарегистрироваться</button>
+            </div>
+        </div>
+    </div>
     <div class="main_osnova-information">
+        <div class="main_item-done">
+            <p class="main_text-done">
+                Товар успешно добавлен в корзину!
+            </p>
+        </div>
         <div class="main_photo-novinki">
             <img src="/photo/stul.png" class="photo-stul">
         </div>
     </div>
+    
     <h1 class="main_text-skidki">Акция</h1>
     <div class="main_box-tovari">
-      
             <div class="main_element-mother">
                 <div class="main_box-element">
                     <div class="main_element-photo">
@@ -128,13 +151,16 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <h1 class="main_text-skidki">Хиты продаж</h1>
         <div class="main_products">
-
         </div>
+        <h1 class="main_text-skidki">Купить со скидкой</h1>
+        <div class="main_products2">
+        </div> 
+    </div>
     </main>
 </body>
-<script src="../main/script.js" type="module"></script>
+<script src="/main/script.js" type="module"></script>
 <script src="../main/massive.js" type="module">
 </script>
 </html>

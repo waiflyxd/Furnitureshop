@@ -1,0 +1,228 @@
+body {
+    background-color: aliceblue;
+    font-family: kinetika;
+    gap: 15px;
+    width: auto;
+    height: 1080px;
+    font-family: kinetika;
+    
+}
+
+header{
+    width: auto;
+    height: 120px;
+}
+.header_information{
+    display: flex;
+    justify-content: left;
+    gap: 15px;
+    align-items: left;
+
+}
+
+.header_photo-logoicon{
+    border-radius: 1rem;
+}
+
+.header_input-type{
+    background-color: rgba(216, 216, 216, 0.758);
+    border-radius: 0.5rem;
+    width: 500px;
+    height: 60px;
+ 
+    align-items: center;
+
+}
+
+.header_infobox{
+    display: flex;
+}
+
+.number{
+    font-size: 30px;
+    color: black;
+}
+
+.number_down-info{
+    font-size: 15px;
+    color: rgba(111, 111, 111, 0.738);
+}
+
+.header_photo-phone{
+margin-top: 30px;
+margin-right: 15px;
+}
+.header_infobox{
+    width: 300px;
+    height: 60px;
+    bottom: 10px;
+    justify-content: center;
+    position: relative;
+}
+.number_down-info{
+    justify-content: center;
+    top: 0.5px;
+    margin-bottom: 10px;
+    position: absolute;
+}
+
+.header_info-text{
+    display: table-column;
+    gap: 5px;
+    
+}
+
+
+/* main */
+a{
+    text-decoration: none;
+}
+.main_back-to-order{
+    color: rgb(127, 168, 255);
+}
+
+.main_payment{
+    width: 600px;
+    height: 220px;
+    background-color: rgba(255, 255, 255, 0.737);
+    border-radius: 3px;
+}
+
+.main_agree{
+    width: 700px;
+    height: 602px;
+    background-color: rgba(255, 255, 255, 0.737);
+    border-radius: 3px;
+    margin-left: 20px;
+    z-index: 999;
+    margin-top: 83px;
+}
+
+.main_payment-text{
+    font-size: 25px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    margin-bottom: 10px;
+}
+
+.main_agree-text{
+    font-size: 15px;
+    background-color: rgb(31, 128, 247);
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    font-family: kinetika;
+    margin-top: 50px;
+    margin-left: 200px;
+    
+    width: 300px;
+    height: 50px;
+}
+
+.main_agree-text:hover{
+    transform: scale(1.1);
+}
+
+.main_full{
+    margin-left: 10%;
+}
+
+.leftandright{
+    display: flex;
+}
+
+.img_payment{
+    border: solid rgb(146, 146, 146) 1px;
+    margin-left: 20px;
+}
+
+.img_payment:active{
+    
+    border: solid rgb(255, 0, 0) 1px;
+}
+
+
+
+.img_payment:hover{
+    border: solid rgb(53, 157, 255) 2px;
+
+}
+
+.payment_method{
+    display: flex;
+}
+
+.hz{
+    font-size: 25px;
+    margin-left: 30px;
+}
+
+.delivery{}
+.point_delivery{
+    margin-left: 60px;
+    font-size: 25px;
+    margin-bottom: 0;
+}
+
+.del_info{
+    display: flex;
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 60px;
+
+}
+.adress{
+    margin-left: 10px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    margin-top: 5px;
+}
+.saveitem{
+    margin-left: 60px;
+}
+.payment_and_agree{
+    display: flex;
+}
+
+.cartoffer{
+    display: block;
+
+}
+
+
+.info{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.name{
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.inputinfo{
+    margin-left: 20px;
+}
+.info_and_agree{
+    display: flex;
+    gap: 10px;
+}
+
+.agreebtn{
+    width: 100px;
+    height: 25px;
+    font-size: 15px;
+    background-color: rgb(31, 128, 247);
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    font-family: kinetika;
+}
+@font-face {
+    font-family: kinetika;
+    src: url(/font/Kastelov\ -\ Kinetika\ Light.otf);
+}

@@ -37,25 +37,28 @@ mainProductsDiv.addEventListener('click', (event) => {
         const productId = parseInt(event.target.getAttribute('data-id'));
         const product = products.find(p => p.id === productId);
         const messageDiv = document.querySelector('.main_item-done');
-    
-    // Показываем элемент
-        
+
+        // Показываем элемент
         setTimeout(() => {
             messageDiv.style.display = 'flex';
         }, 3);
-    // Убираем элемент через 3 секунды
+        // Убираем элемент через 3 секунды
         setTimeout(() => {
-         messageDiv.style.display = 'none';
+            messageDiv.style.display = 'none';
         }, 3000); // 3000 миллисекунд = 3 секунды
 
-        
         if (product) {
             // Получаем текущие товары в корзине из localStorage
             const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            cartItems.push(product); // Добавляем товар в корзину
+            const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+
+            if (existingItemIndex > -1) {
+                cartItems[existingItemIndex].quantity += 1; // Увеличиваем количество, если товар уже в корзине
+            } else {
+                cartItems.push({ ...product, quantity: 1 }); // Добавляем товар с количеством 1
+            }
+
             localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Сохраняем обновленный массив в localStorage
-            
-           
         }
     }
 });
@@ -132,32 +135,36 @@ signin.addEventListener('click', (event) => {
     const user = users.find(user => user.email === email && user.password === password);
     
     if (user) {
-        console.log('Успешный вход:', { email });
+       
+        alert('Успешный вход, добро пожаловать!' );
         regwind.style.display = "none";
         localStorage.setItem('user', JSON.stringify(user)); // Сохраняем пользователя в localStorage
         btnreg.textContent = user.email; // Обновляем текст кнопки
     } else {
         console.error('Неверный email или пароль');
+        alert('Неверный email или пароль');
     }
 });
 
 // Обработчик события для кнопки регистрации
 let signUp = document.querySelector('.sign_up');
-
+let userreg = document.querySelector('.userreg')
 signUp.addEventListener('click', (event) => {
     const email = document.querySelector('.input_reg[type="email"]').value;
     const password = document.querySelector('.input_reg[type="password"]').value;
-
+    userreg.style.display = "block"
     // Проверка на существование пользователя
     const existingUser = users.find(user => user.email === email);
     if (existingUser) {
         console.error('Пользователь с таким email уже существует');
+        alert('Пользователь с таким email уже существует');
         return; // Выход из функции, если пользователь уже зарегистрирован
     }
 
     // Добавляем нового пользователя в массив
     users.push({ email, password });
-    console.log('Пользователь зарегистрирован:', { email, password });
+  
+    
     
     // Сохраняем нового пользователя в localStorage
     localStorage.setItem('user', JSON.stringify({ email, password }));

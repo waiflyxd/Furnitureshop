@@ -263,8 +263,9 @@ color: white;
 }
 
 .button_reg{
-    margin-top: 100px;
+    margin-top: 50px;
     gap: 50px;
+
 
 
 }
@@ -400,10 +401,17 @@ color: white;
     position: absolute;
 }
 
+.userreg{
+    width: 500px;
+    margin-top: 30px;
+    display: none;
+    color: white;
+}
+
 
 @font-face {
     font-family: kinetika;
-    src: url(/font/Kastelov\ -\ Kinetika\ Light.otf);
+    src: url(../font/Kastelov\ -\ Kinetika\ Light.otf);
 }
 
 @media only screen and (min-width: 768px) {

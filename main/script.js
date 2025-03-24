@@ -1,6 +1,6 @@
 "use strict";
 import { products } from "./massive.js";
-import { products2 } from "./massive2.js";
+
 
 const mainProductsDiv = document.querySelector('.main_products');
 const cartBox = document.querySelector('.header_korz-box');
@@ -45,7 +45,7 @@ mainProductsDiv.addEventListener('click', (event) => {
         // Убираем элемент через 3 секунды
         setTimeout(() => {
             messageDiv.style.display = 'none';
-        }, 3000); // 3000 миллисекунд = 3 секунды
+        }, 3000); 
 
         if (product) {
             // Получаем текущие товары в корзине из localStorage
@@ -82,32 +82,6 @@ function updateCart() {
 const mainProductsDiv2 = document.querySelector('.main_products2');
 
 // Карточки Товаров
-products2.forEach(product => {
-    const productCard = document.createElement('div');
-    productCard.classList.add('product_card');
-    const price = parseFloat(product.price); 
-    const bonus = (price * 0.2); 
-
-    productCard.innerHTML = `
-    <div class="allproducts">
-        <img src="${product.img}" alt="${product.name}" class="main_product-img" />
-        <h2 class="main_product-text">${product.name}</h2>
-        <p class="main_product-bonus"> + ${bonus} бонусов </p>
-        <div class="main_product-all">
-            <p class="main_product_price">${product.price} ₽</p> 
-            <p class="product_price-text">${product.pricetext}</p>
-        </div>
-        <div class="main_product-reviews">
-            <img src="${product.star}" class="main_product-star" /><p class="main_product-mention">${product.mention}</p>
-        </div>
-        <p class="main_product-nal">${product.nal}</p>
-        <button class="main_product-btn" data-id="${product.id}">В корзину</button>
-    </div>
-    `;
-
-    mainProductsDiv2.appendChild(productCard);
-});
-
 let btnreg = document.querySelector('.registration');
 let regwind = document.querySelector('.main_registration-window');
 btnreg.addEventListener('click', () =>{

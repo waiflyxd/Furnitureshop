@@ -216,7 +216,7 @@ color: white;
     overflow: scroll;
     overflow-x: hidden;
     margin-right: 0;
-    display: none;
+    display: block;
 
     border-radius: 6px;
     margin-top: 10px;

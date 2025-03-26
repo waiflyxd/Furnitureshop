@@ -4,6 +4,7 @@ let totalPriceDiv = document.querySelector('.total');
 const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 let totalPrice = 0;
 const boxitems = document.querySelector('.main_allitems');
+let productitems = document.querySelector('.product_items');
 let btnclear = document.querySelector('.main_btn-clear');
 btnclear.addEventListener('click', (event) => {
     localStorage.removeItem('cartItems');
@@ -15,7 +16,7 @@ cartinfo.classList.add('cart_info');
 
 // Функция для отображения товаров в корзине
 function renderCartItems() {
-        cartBox.innerHTML = ``; // Очищаем корзину перед рендерингом
+    boxitems.innerHTML = ``; // Очищаем корзину перед рендерингом
 
     totalPrice = 0; // Сбрасываем общую стоимость
 
@@ -38,7 +39,7 @@ function renderCartItems() {
                 </div>
             </div>
         </div>`;
-        cartBox.appendChild(cartItem);
+        boxitems.appendChild(cartItem);
         totalPrice += parseFloat(item.price) * item.quantity; // Учитываем количество
     });
 
@@ -52,7 +53,7 @@ function renderCartItems() {
 renderCartItems();
 
 // Обработчик событий для кнопок в корзине
-cartBox.addEventListener('click', (event) => {
+boxitems.addEventListener('click', (event) => {
     const productId = parseInt(event.target.getAttribute('data-id'));
     const productIndex = cartItems.findIndex(item => item.id === productId);
 

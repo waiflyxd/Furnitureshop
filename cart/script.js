@@ -5,13 +5,17 @@ const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 let totalPrice = 0;
 const boxitems = document.querySelector('.main_allitems');
 let btnclear = document.querySelector('.main_btn-clear');
-
-    btnclear.addEventListener('click', (event) => {
+btnclear.addEventListener('click', (event) => {
     localStorage.removeItem('cartItems');
     location.reload();
 });
+const cartinfo = document.createElement('div');
+cartinfo.classList.add('cart_info');
+;
+
 // Функция для отображения товаров в корзине
 function renderCartItems() {
+        cartBox.innerHTML = ``; // Очищаем корзину перед рендерингом
 
     totalPrice = 0; // Сбрасываем общую стоимость
 
@@ -39,13 +43,13 @@ function renderCartItems() {
     });
 
     totalPriceDiv.innerHTML = `${totalPrice} руб.`; // Обновляем общую стоимость
-    boxitems.style.display = cartItems.length > 0 ? "block" : "none"; // Показываем или скрываем корзину
+
+    // Устанавливаем обработчик событий для кнопки "Очистить Корзину"
+   
 }
 
 // Обновляем интерфейс при загрузке страницы
 renderCartItems();
-
-
 
 // Обработчик событий для кнопок в корзине
 cartBox.addEventListener('click', (event) => {
@@ -53,18 +57,16 @@ cartBox.addEventListener('click', (event) => {
     const productIndex = cartItems.findIndex(item => item.id === productId);
 
     if (event.target.classList.contains('btn-increase')) {
-        cartItems[productIndex].quantity += 1; 
+        cartItems[productIndex].quantity += 1; // Увеличиваем количество
     } else if (event.target.classList.contains('btn-decrease')) {
         if (cartItems[productIndex].quantity > 1) {
-            cartItems[productIndex].quantity -= 1; 
+            cartItems[productIndex].quantity -= 1; // Уменьшаем количество
         }
     } else if (event.target.classList.contains('btn-remove')) {
-        cartItems.splice(productIndex, 1);
-        location.reload();
+        cartItems.splice(productIndex, 1); // Удаляем элемент
     }
 
- 
     localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Сохраняем изменения в localStorage
-    renderCartItems(); 
+    renderCartItems(); // Обновляем отображение корзины
 });
 

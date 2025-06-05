@@ -12,13 +12,19 @@
 <body>
     
     <header class="header_full">
+           <div class="admin">
+
+                </div>
         <div class="header_information">
             <div class="header_photo-logo">
+             
                 <img src="../photo/уютныйдом.png" width="250px" height="120px" class="header_photo-logoicon">
             </div>
             <div class="header_input">
-                <input class="header_input-type" type="search">
+                 <input class="header_input-type" type="search" placeholder="Поиск товара..." oninput="searchProducts()" id="search-input">
             </div>
+            <span></span> 
+
             <div class="header_infobox">
                 <div class="header_photo-phone">
                     <img src="../photo/phone.png" width="30px" height="30px">

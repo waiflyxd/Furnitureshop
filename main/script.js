@@ -1,145 +1,236 @@
 "use strict";
 import { products } from "./massive.js";
 
-
 const mainProductsDiv = document.querySelector('.main_products');
 const cartBox = document.querySelector('.header_korz-box');
-let cartItems = [];
+const users = [];
+const admin = { email: "Shamova", password: "admin123", role: "admin" };
+users.push(admin);
 
-// Карточки Товаров
-products.forEach(product => {
-    const productCard = document.createElement('div');
-    productCard.classList.add('product_card');
-    const price = parseFloat(product.price); 
-    const bonus = (price * 0.2); 
+// ПОИСК
+function searchProducts() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    productCard.innerHTML = `
-        <img src="${product.img}" alt="${product.name}" class="main_product-img" />
-        <h2 class="main_product-text">${product.name}</h2>
-        <p class="main_product-bonus"> + ${bonus} бонусов </p>
-        <div class="main_product-all">
-            <p class="main_product_price">${product.price} ₽</p> 
-            <p class="product_price-text">${product.pricetext}</p>
-        </div>
-        <div class="main_product-reviews">
-            <img src="${product.star}" class="main_product-star" /><p class="main_product-mention">${product.mention}</p>
-        </div>
-        <p class="main_product-nal">${product.nal}</p>
-        <button class="main_product-btn" data-id="${product.id}">В корзину</button>
-    `;
+    const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(query)
+    );
 
-    mainProductsDiv.appendChild(productCard);
+    renderProducts(user, filtered);
+}
+
+let btnreg = document.querySelector('.registration');
+let regwind = document.querySelector('.main_registration-window');
+let signin = document.querySelector('.sign_in');
+let signUp = document.querySelector('.sign_up');
+let userreg = document.querySelector('.userreg');
+
+// === UI ===
+btnreg.addEventListener('click', () => {
+    regwind.style.display = "block";
+});
+document.querySelector('.closePopup').addEventListener('click', () => {
+    regwind.style.display = "none";
 });
 
-// Добавить в корзину
+// === Логика входа ===
+signin.addEventListener('click', () => {
+    const email = document.querySelector('.input_reg[type="email"]').value;
+    const password = document.querySelector('.input_reg[type="password"]').value;
+    const user = users.find(u => u.email === email && u.password === password);
+
+    if (user) {
+        alert(`Успешный вход, ${user.email}`);
+        regwind.style.display = "none";
+        setUser(user);
+    } else {
+        alert("Неверный email или пароль");
+    }
+});
+
+// === Регистрация ===
+signUp.addEventListener('click', () => {
+    const email = document.querySelector('.input_reg[type="email"]').value;
+    const password = document.querySelector('.input_reg[type="password"]').value;
+
+    const existing = users.find(u => u.email === email);
+    if (existing) {
+        alert("Пользователь уже существует");
+        return;
+    }
+
+    const newUser = { email, password, role: "user" };
+    users.push(newUser);
+    userreg.style.display = "block";
+    setUser(newUser);
+});
+
+// === Сохранение пользователя ===
+function setUser(user) {
+    localStorage.setItem("user", JSON.stringify(user));
+    btnreg.textContent = user.email;
+    renderProducts(user);
+
+    if (user.role === "admin") {
+        showAdminPanel(user);
+    }
+}
+
+
+
+// === Отрисовка карточек ===
+function renderProducts(user) {
+    mainProductsDiv.innerHTML = '';
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product_card');
+
+        const price = parseFloat(product.price);
+        const bonus = (price * 0.2);
+
+        productCard.innerHTML = `
+            <img src="${product.img}" alt="${product.name}" class="main_product-img" />
+            <h2 class="main_product-text">${product.name}</h2>
+            <p class="main_product-bonus"> + ${bonus} бонусов </p>
+            <div class="main_product-all">
+                <p class="main_product_price">${product.price} ₽</p> 
+                <p class="product_price-text">${product.pricetext}</p>
+            </div>
+            <div class="main_product-reviews">
+                <img src="${product.star}" class="main_product-star" />
+                <p class="main_product-mention">${product.mention}</p>
+            </div>
+            <p class="main_product-nal">${product.nal}</p>
+            <button class="main_product-btn" data-id="${product.id}">В корзину</button>
+        `;
+
+        if (user && user.role === "admin") {
+            const prodinfo = document.createElement('div');
+            prodinfo.classList.add('info-panel');
+            prodinfo.innerHTML = `<button class="edit-product-btn" data-id="${product.id}">Посмотреть информацию</button>`;
+            prodinfo.querySelector('.edit-product-btn').addEventListener('click', () => {
+                const prodinformation = document.createElement('div');
+                prodinformation.classList.add('prod-information');  
+                prodinformation.innerHTML = `
+                    <p class="info-product">ID: ${product.id}</p>
+                    <p class="info-product">Название: ${product.name}</p>
+                    <p class="info-product">Цена: ${product.price}</p>
+                    <p class="info-product">ID: ${product.id}</p>
+                    `
+                   
+                    productCard.appendChild(prodinformation); // Добавляем в DOM
+            })
+            productCard.appendChild(prodinfo);
+        }
+
+        mainProductsDiv.appendChild(productCard);
+    });
+}
+
+// === Обработка кнопки "В корзину" ===
 mainProductsDiv.addEventListener('click', (event) => {
     if (event.target.classList.contains('main_product-btn')) {
         const productId = parseInt(event.target.getAttribute('data-id'));
         const product = products.find(p => p.id === productId);
         const messageDiv = document.querySelector('.main_item-done');
 
-        // Показываем элемент
-        setTimeout(() => {
-            messageDiv.style.display = 'flex';
-        }, 3);
-        // Убираем элемент через 3 секунды
-        setTimeout(() => {
-            messageDiv.style.display = 'none';
-        }, 3000); 
+        setTimeout(() => messageDiv.style.display = 'flex', 3);
+        setTimeout(() => messageDiv.style.display = 'none', 3000);
 
         if (product) {
-            // Получаем текущие товары в корзине из localStorage
             const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
 
             if (existingItemIndex > -1) {
-                cartItems[existingItemIndex].quantity += 1; // Увеличиваем количество, если товар уже в корзине
+                cartItems[existingItemIndex].quantity += 1;
             } else {
-                cartItems.push({ ...product, quantity: 1 }); // Добавляем товар с количеством 1
+                cartItems.push({ ...product, quantity: 1 });
             }
 
-            localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Сохраняем обновленный массив в localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
         }
     }
 });
 
-// Обновление корзины 
-function updateCart() {
-    cartBox.innerHTML = ''; // Очищаем корзину
-    cartItems.forEach(item => {
-        const cartItem = document.createElement('div');
-        cartItem.classList.add('cart_item');
-        cartItem.innerHTML = `
-            <h3>${item.name}</h3>
-            <p>Цена: ${item.price} руб.</p>
-        `;
-        cartBox.appendChild(cartItem);
+// === Админ-панель ===
+function showAdminPanel(user) {
+    const adminPanel = document.querySelector('.admin');
+    adminPanel.classList.add('admin-panel');
+    adminPanel.innerHTML = `
+        <h2>Здравствуйте, ${user.email}!</h2>
+        <p class="admin-welcome"><b>Добро пожаловать в админ панель!</b></p>
+        <button id="view-users">Просмотреть пользователей</button>
+        <div id="user-list"></div>
+        <h3>Редактировать товары</h3>
+        <input type="text" id="product-id" placeholder="ID товара" />
+        <input type="text" id="product-name" placeholder="Название товара" />
+        <input type="text" id="product-price" placeholder="Цена товара" />
+        <input type="file" id="product-image" accept="image/*" />
+        <button id="save-product">Сохранить изменения</button>
+    `;
+
+    document.getElementById('view-users').addEventListener('click', () => {
+        const userList = document.getElementById('user-list');
+        userList.innerHTML = '';
+        users.forEach(u => {
+            const userItem = document.createElement('p');
+            userItem.textContent = `Email: ${u.email}, Роль: ${u.role}`;
+            userList.appendChild(userItem);
+        });
     });
+
+    document.getElementById('save-product').addEventListener('click', editProduct);
 }
 
+// === Редактирование товара ===
+function editProduct() {
+    const productId = document.getElementById('product-id').value;
+    const productName = document.getElementById('product-name').value;
+    const productPrice = document.getElementById('product-price').value;
+    const productImage = document.getElementById('product-image').files[0];
 
+    const productIndex = products.findIndex(product => product.id === parseInt(productId));
+    if (productIndex !== -1) {
+        products[productIndex].name = productName;
+        products[productIndex].price = productPrice;
 
-const mainProductsDiv2 = document.querySelector('.main_products2');
+        if (productImage) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                products[productIndex].img = e.target.result;
 
-// Карточки Товаров
-let btnreg = document.querySelector('.registration');
-let regwind = document.querySelector('.main_registration-window');
-btnreg.addEventListener('click', () =>{
-    regwind.style.display = "block";
-});
-
-
-let exit = document.querySelector('.closePopup');
-exit.addEventListener('click', () =>{
-    regwind.style.display = "none";
-});
-
-
-//Регистрация 
-const users = []; // Массив для хранения данных пользователей
-
-let signin = document.querySelector('.sign_in');
-
-// Обработчик события для кнопки входа
-signin.addEventListener('click', (event) => {
-    const email = document.querySelector('.input_reg[type="email"]').value;
-    const password = document.querySelector('.input_reg[type="password"]').value;
-
-    // Проверка на существование пользователя
-    const user = users.find(user => user.email === email && user.password === password);
-    
-    if (user) {
-       
-        alert('Успешный вход, добро пожаловать!' );
-        regwind.style.display = "none";
-        localStorage.setItem('user', JSON.stringify(user)); // Сохраняем пользователя в localStorage
-        btnreg.textContent = user.email; // Обновляем текст кнопки
+                alert('Товар успешно обновлён!');
+                const user = JSON.parse(localStorage.getItem('user'));
+                renderProducts(user); // Перерисовать товары после загрузки изображения
+            };
+            reader.readAsDataURL(productImage);
+        } else {
+            alert('Товар успешно обновлён!');
+            const user = JSON.parse(localStorage.getItem('user'));
+            renderProducts(user); // Перерисовать товары без изображения
+        }
     } else {
-        console.error('Неверный email или пароль');
-        alert('Неверный email или пароль');
+        alert('Товар не найден!');
+    }
+}
+
+// === Загрузка при старте ===
+window.addEventListener('DOMContentLoaded', () => {
+    const savedUser = JSON.parse(localStorage.getItem('user'));
+    if (savedUser) {
+        setUser(savedUser);
+    } else {
+        renderProducts(null);
     }
 });
-
-// Обработчик события для кнопки регистрации
-let signUp = document.querySelector('.sign_up');
-let userreg = document.querySelector('.userreg')
-signUp.addEventListener('click', (event) => {
-    const email = document.querySelector('.input_reg[type="email"]').value;
-    const password = document.querySelector('.input_reg[type="password"]').value;
-    userreg.style.display = "block"
-    // Проверка на существование пользователя
-    const existingUser = users.find(user => user.email === email);
-    if (existingUser) {
-        console.error('Пользователь с таким email уже существует');
-        alert('Пользователь с таким email уже существует');
-        return; // Выход из функции, если пользователь уже зарегистрирован
-    }
-
-    // Добавляем нового пользователя в массив
-    users.push({ email, password });
-  
-    
-    
-    // Сохраняем нового пользователя в localStorage
-    localStorage.setItem('user', JSON.stringify({ email, password }));
+// === Выход ===
+const logoutBtn = document.createElement('button');
+logoutBtn.textContent = 'Выйти';
+logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('user');
+    location.reload();
 });
+document.body.appendChild(logoutBtn);
+
+
+

@@ -1,3 +1,8 @@
 1 скачать xampp
 2 сощдать папку Furnitureshop по пути C:\xampp\htdocs
 3 скинуть файлы login.php и register.php в папку Furnitureshop 
+4 открыть xampp и включить apache и mysql
+5 чтобы посмотреть бд зайти на сайт - http://localhost/phpmyadmin/index.php?route=/sql&db=furnitureshop&table=users&pos=0
+6 admin panel 
+login - Shamova
+passwd - admin123

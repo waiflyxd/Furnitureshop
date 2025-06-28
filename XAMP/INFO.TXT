@@ -1,0 +1,3 @@
+1 скачать xampp
+2 сощдать папку Furnitureshop по пути C:\xampp\htdocs
+3 скинуть файлы login.php и register.php в папку Furnitureshop 

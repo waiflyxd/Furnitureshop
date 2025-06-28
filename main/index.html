@@ -85,11 +85,14 @@
             <button class="closePopup" aria-label="Закрыть окно">Закрыть</button>
             <h1 class="reg_win-text">Введите свой Дом ID</h1>
             <div class="infowind">
+                <form method="POST" action="register.php">
                 <p class="reg_win-textdecription">Введите email</p>
-                <input class="input_reg" type="email" placeholder="example@mail.com" required>
+                <input class="input_reg" type="email" name="email" placeholder="example@mail.com" required>
                 <p class="reg_win-textdecription">Введите пароль</p>
-                <input class="input_reg" type="password" placeholder="Ваш пароль" required>
+                <input class="input_reg" type="password" name="password" placeholder="Ваш пароль" required>
+            </form>
             </div>
+            
             <p class="userreg">Пользователь зарегистрирован</p>
             <div class="button_reg">
                

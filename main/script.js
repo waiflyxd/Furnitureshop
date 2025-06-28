@@ -37,32 +37,43 @@ document.querySelector('.closePopup').addEventListener('click', () => {
 signin.addEventListener('click', () => {
     const email = document.querySelector('.input_reg[type="email"]').value;
     const password = document.querySelector('.input_reg[type="password"]').value;
-    const user = users.find(u => u.email === email && u.password === password);
 
-    if (user) {
-        alert(`Успешный вход, ${user.email}`);
-        regwind.style.display = "none";
-        setUser(user);
-    } else {
-        alert("Неверный email или пароль");
-    }
+    fetch("http://localhost/Furnitureshop/login.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert(`Добро пожаловать, ${data.user.email}`);
+            setUser(data.user);
+            regwind.style.display = "none";
+        } else {
+            alert("Неверный логин или пароль");
+        }
+    });
 });
+
 
 // === Регистрация ===
 signUp.addEventListener('click', () => {
-    const email = document.querySelector('.input_reg[type="email"]').value;
-    const password = document.querySelector('.input_reg[type="password"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const password = document.querySelector('input[name="password"]').value;
 
-    const existing = users.find(u => u.email === email);
-    if (existing) {
-        alert("Пользователь уже существует");
-        return;
-    }
-
-    const newUser = { email, password, role: "user" };
-    users.push(newUser);
-    userreg.style.display = "block";
-    setUser(newUser);
+    fetch("http://localhost/Furnitureshop/register.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert("Регистрация прошла успешно!");
+        } else {
+            alert("Ошибка: " + data.error);
+        }
+    });
 });
 
 // === Сохранение пользователя ===
